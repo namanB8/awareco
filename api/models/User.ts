@@ -5,14 +5,12 @@ export type UserDocument = mongoose.Document & {
     name: string;
     phone: string;
     password: string;
-    dateOfBirth: string;
 };
 
 const userSchema = new mongoose.Schema({
     name: String,
     phone: { type: String, unique: true },
     password: String,
-    dateOfBirth: Date,
 }, { timestamps: true });
 
 /**

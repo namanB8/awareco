@@ -3,7 +3,7 @@ import { UserDocument } from "./User";
 import { TransactionDocument } from "./Transaction";
 
 export type DonationDocument = mongoose.Document & {
-    type: UserDocument,
+    user: UserDocument,
     amount: number,
     transaction: TransactionDocument
 };
