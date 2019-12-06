@@ -17,7 +17,7 @@ export default class CoIncreased extends React.Component {
         >1000</Text>
 
 <Image
-          style={{width: 90, height: 90, backgroundColor: "yellow"}}
+          style={{width: 90, height: 90}}
           source={require('C:/Users/My-Pc/git/awareco/app/src/images/car.png')}
         />
 <Text>Distance covered: 15 KMs</Text>

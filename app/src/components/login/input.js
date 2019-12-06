@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import history from "../../utilities/history";
+import { Link } from "react-router-native";
+// import history from "../../utilities/history";
 
 class Inputs extends Component {
  
@@ -20,9 +21,9 @@ class Inputs extends Component {
       // fetch("https://jsonplaceholder.typicode.com/users")
       // .then(response => response.json())
       // .then((responseJson)=> {
-        history.push("/dashboard")
+      //   history.push("/dashboard")
 // })
-.catch(error=>console.log(error))
+// .catch(error=>console.log(error))
    }
    render() {
       return (
@@ -41,14 +42,19 @@ class Inputs extends Component {
                autoCapitalize = "none"
                onChangeText = {this.handlePassword}/>
             
+            
             <TouchableOpacity
                style = {styles.submitButton}
-               disabled={this.state.userName === "" || this.state.password === ""}
-               onPress = {
-                  () => this.login(this.state.userName, this.state.password)
-               }>
+               // disabled={this.state.userName === "" || this.state.password === ""}
+               // onPress = {
+               //    () => this.login(this.state.userName, this.state.password)
+               // }
+               >
+                  <Link to="/dashboard">
                <Text style = {styles.submitButtonText}> Login </Text>
+               </Link>
             </TouchableOpacity>
+            
          </View>
       )
    }

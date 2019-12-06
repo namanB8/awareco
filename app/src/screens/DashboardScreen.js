@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, Button, Image } from "react-native";
+import { View, Text, StyleSheet, Button, Image, Linking, TouchableOpacity  } from "react-native";
 import { black, green } from "color-name";
-import history from "../utilities/history";
+// import history from "../utilities/history";
+import { Link } from "react-router-native";
 
 export default class DashboardScreen extends React.Component {
   static navigationOptions =
@@ -64,21 +65,57 @@ export default class DashboardScreen extends React.Component {
 </View>
 </View>
 <View style={{paddingBottom: 10}}>
+<TouchableOpacity
+               style = {styles.submitButton}
+               // disabled={this.state.userName === "" || this.state.password === ""}
+               // onPress = {
+               //    () => this.login(this.state.userName, this.state.password)
+               // }
+               >
+                  <Link to="/activity">
+               <Text style = {{width: 400, marginBottom: 10}}> Activity </Text>
+               </Link>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+               style = {styles.submitButton}
+               // disabled={this.state.userName === "" || this.state.password === ""}
+               // onPress = {
+               //    () => this.login(this.state.userName, this.state.password)
+               // }
+               >
+                  <Link to="/donate">
+               <Text style = {{width: 400, marginBottom: 10}}> Donate </Text>
+               </Link>
+            </TouchableOpacity>
+            <TouchableOpacity
+               style = {styles.submitButton}
+               // disabled={this.state.userName === "" || this.state.password === ""}
+               // onPress = {
+               //    () => this.login(this.state.userName, this.state.password)
+               // }
+               >
+                  <Link to="/volunteer">
+               <Text style = {{width: 400, marginBottom: 10}}> Volunteer </Text>
+               </Link>
+            </TouchableOpacity>
+{/* <Link to="/activity">
         <Button title="Activities" 
         style={{width: 400, marginBottom: 10}}
-        onPress={() => {
-          history.push("/activities")
-        }}/>
+      //  onPress={() => {Linking.openURL("/activity")}}
+        />
+        </Link>
+        <Link to="/donate">
         <Button title="Donate" 
         style={{width: 400, marginBottom: 10}}
-        onPress={() => {
-          history.push("/donate")
-        }}/>
+       
+        />
+        </Link>
+        <Link to="/volunteer">
         <Button title="Volunteer" 
         style={{width: 400}}
-        onPress={() => {
-          history.push("/volunteer")
-        }}/>
+        />
+        </Link> */}
         </View>
       </View>
     );
@@ -90,5 +127,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
-  }
+  },
+  submitButton: {
+    backgroundColor: '#aef359',
+    padding: 10,
+    margin: 15,
+    height: 40,
+    alignContent: "center"
+ },
+ submitButtonText:{
+    color: '#74b72e'
+ }
 });

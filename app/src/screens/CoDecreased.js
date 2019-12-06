@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 
 export default class CoDecreased extends React.Component {
 
@@ -17,21 +17,27 @@ export default class CoDecreased extends React.Component {
         >1300</Text>
 
 <Image
-          style={{width: 90, height: 90, backgroundColor: "yellow"}}
-          source={require('C:/Users/My-Pc/git/awareco/app/src/images/man-walking.png')}
+          style={{width: 90, height: 90}}
+          source={require('C:/Users/My-Pc/git/awareco/app/src/images/car.png')}
         />
-<Text>Distance covered: 5 KMs</Text>
-<Text>CO2 Saved: 5 g/kms</Text>
+<Text>Distance covered: 15 KMs</Text>
+<Text>CO2 Consumed: 500 g/kms</Text>
            
 <Image
           style={{width: 50, height: 50, backgroundColor: "yellow", marginTop: 50}}
           source={require('C:/Users/My-Pc/git/awareco/app/src/images/coins.png')}
         />
         <Text
-        style={{color: "orange", fontSize: 50}}
+        style={{color: "red", fontSize: 50}}
         >
-          +100
+          -200
         </Text>
+
+        <Button title="Take Action" 
+        style={{width: 400, marginBottom: 10}}
+        onPress={() => {
+         //  history.push("/donate")
+        }}/>
 
          </View>
       );
