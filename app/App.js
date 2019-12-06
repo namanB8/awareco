@@ -1,36 +1,29 @@
 import React from "react";
-// import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./src/screens/LoginScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import DonateScreen from "./src/screens/DonateScreen";
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import { StyleSheet, Text, View } from "react-native";
+import { NativeRouter, Switch, Route } from "react-router-native";
 
- const AppNavigator = createStackNavigator(
-  {
-   Home: LoginScreen,
-   
-   DashboardScreen: DashboardScreen,
-   DonateScreen: DonateScreen
-  },
-  {
-    initialRouteName: 'DonateScreen',
-  });
-  const AppContainer = createAppContainer(AppNavigator);
   export default class App extends React.Component {
     render() {
       return <AppContainer />;
     }
   }
-// const AppSwitchNavigator = createSwitchNavigator({
-//   Login: LoginScreen,
-//   Dashboard: DashboardScreen
-// },
-// {
-//   initialRouteName: 'Login',
-// }
-// );
+export default function App() {
+  return (
+    <NativeRouter>
+      <View style={styles.container}>
+        <Switch>
+          <Route exact path="/" component={LoginScreen} />
+          <Route exact path="/dashboard" component={DashboardScreen} />
+          <Route exact path="/donate" component={DonateScreen} />
+        </Switch>
+      </View>
+    </NativeRouter>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
