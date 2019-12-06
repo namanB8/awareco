@@ -94,6 +94,38 @@ router.get('/credits/:userId', async (req, res) => {
   }
 });
 
+router.post('/donate/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    
+    const transaction = await Transaction.create({
+      user,
+      type: 'Donation',
+      credits: req.body.amount
+    })
+
+    const donation = await Donation.create({
+      user,
+      amount: req.body.amount,
+      transaction
+    });
+
+    res.json({
+      status: true,
+      message: '',
+      data: {
+        donation
+      }
+    });
+  } catch(err) {
+    res.json({
+      status: false,
+      message: err.message,
+      data: {}
+    });
+  }
+});
+
 //router.get('/leaderboard');
 //router.get('/credits');
 
