@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
 import { DataTable, RadioButton  } from 'react-native-paper';
 
 export default class DonateScreen extends React.Component {
@@ -21,7 +21,6 @@ export default class DonateScreen extends React.Component {
  }
 
    render() {
-    const { checked } = this.state.checked;
 
       return (
          <View style = {styles.container}>
@@ -33,6 +32,10 @@ export default class DonateScreen extends React.Component {
         style={{position: "absolute", right: -80, top: 20}}
         >1200</Text>
 
+<Image
+          style={{width: 90, height: 90, backgroundColor: "yellow"}}
+          source={require('C:/Users/My-Pc/git/awareco/app/src/images/donate2.png')}
+        />
 <Text>Amount you want to donate: </Text>
            <TextInput
       style={{ height: 40, width:100, borderColor: 'gray', borderWidth: 1, marginBottom:40 }}
@@ -43,40 +46,29 @@ export default class DonateScreen extends React.Component {
 <Text>Mode of payment: </Text>   
 <RadioButton
           value="first"
-          status={checked === 'first' ? 'checked' : 'unchecked'}
+          status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
           onPress={() => { this.setState({ 
             ...this.state,
             checked: 'first' }); }}
-        >Credit Card</RadioButton>
+        />
+        <Text
+
+        style={{marginLeft: 10}}
+        >Debit Card </Text>
         <RadioButton
           value="second"
-          status={checked === 'second' ? 'checked' : 'unchecked'}
+          status={this.state.checked === 'second' ? 'checked' : 'unchecked'}
           onPress={() => { this.setState({ 
             ...this.state,
             checked: 'second' }); }}
-        >Debit Card</RadioButton>
-
-{/* <DataTable style={{marginBottom: 100}}>
-        <DataTable.Row>
-          <DataTable.Cell>
-          <RadioButton
-          value="first"
-          status={checked === 'first' ? 'checked' : 'unchecked'}
-          onPress={() => { this.setState({ checked: 'first' }); }}
         />
-          </DataTable.Cell>
-        </DataTable.Row>
+        <Text>Credit Card </Text>
 
-        <DataTable.Row>
-          <DataTable.Cell>
-          <RadioButton
-          value="second"
-          status={checked === 'second' ? 'checked' : 'unchecked'}
-          onPress={() => { this.setState({ checked: 'second' }); }}
-        />
-          </DataTable.Cell>
-        </DataTable.Row>
-      </DataTable>  */}
+        <Button title="Pay" 
+        style={{width: 400, marginBottom: 10}}
+        onPress={() => {
+          history.push("/congratulations")
+        }}/>
          </View>
       );
    }
