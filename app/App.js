@@ -3,22 +3,21 @@ import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./src/screens/LoginScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import DonateScreen from "./src/screens/DonateScreen";
-import { NativeRouter, Switch, Route } from "react-router-native";
+import VolunteerScreen from "./src/screens/VolunteerScreen";
+import { NativeRouter, Switch, Route, Router } from "react-router-native";
+import history from "./src/utilities/history";
 
-  export default class App extends React.Component {
-    render() {
-      return <AppContainer />;
-    }
-  }
 export default function App() {
   return (
-    <NativeRouter>
+    <NativeRouter >
       <View style={styles.container}>
-        <Switch>
-          <Route exact path="/" component={LoginScreen} />
+        <Router history={history}>
+          {/* <Route exact path="/" component={LoginScreen} /> */}
           <Route exact path="/dashboard" component={DashboardScreen} />
+          <Route exact path="/" component={DonateScreen} />
           <Route exact path="/donate" component={DonateScreen} />
-        </Switch>
+          <Route exact path="/volunteer" component={VolunteerScreen} />
+        </Router>
       </View>
     </NativeRouter>
   );

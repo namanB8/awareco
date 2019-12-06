@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
-import { Card } from 'react-native-elements'
-import { black, green, yellow } from "color-name";
+import { black, green } from "color-name";
+import history from "../utilities/history";
 
 export default class DashboardScreen extends React.Component {
   static navigationOptions =
@@ -52,7 +52,7 @@ export default class DashboardScreen extends React.Component {
 <View style={{width: 150, height: 150, border: 1, borderColor: black, backgroundColor: green}}>
 <Image
           style={{width: 150, height: 150, backgroundColor: "yellow"}}
-          source={require('C:/Users/My-Pc/git/awareco/app/src/images/donate2.png')}
+          source={require('C:/Users/My-Pc/git/awareco/app/src/images/EVENTS.png')}
         />
           <Text style={{marginBottom: 10, marginLeft: 50}}>
     {users[1].name}
@@ -66,13 +66,19 @@ export default class DashboardScreen extends React.Component {
 <View style={{paddingBottom: 10}}>
         <Button title="Activities" 
         style={{width: 400, marginBottom: 10}}
-        onPress={() => {}}/>
+        onPress={() => {
+          history.push("/activities")
+        }}/>
         <Button title="Donate" 
         style={{width: 400, marginBottom: 10}}
-        onPress={() => {}}/>
+        onPress={() => {
+          history.push("/donate")
+        }}/>
         <Button title="Volunteer" 
         style={{width: 400}}
-        onPress={() => {}}/>
+        onPress={() => {
+          history.push("/volunteer")
+        }}/>
         </View>
       </View>
     );

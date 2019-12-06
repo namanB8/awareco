@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
+import history from "../../utilities/history";
 
 class Inputs extends Component {
  
@@ -15,11 +16,11 @@ class Inputs extends Component {
       this.setState({ password: text })
    }
    login = (userName, pass) => {
-      alert('userName: ' + userName + ' password: ' + pass)
+      // alert('userName: ' + userName + ' password: ' + pass)
       // fetch("https://jsonplaceholder.typicode.com/users")
       // .then(response => response.json())
       // .then((responseJson)=> {
-        this.props.navigation.navigate('DashboardScreen')
+        history.push("/dashboard")
 // })
 .catch(error=>console.log(error))
    }

@@ -26,11 +26,11 @@ export default class DonateScreen extends React.Component {
       return (
          <View style = {styles.container}>
            <Image
-          style={{width: 30, height: 30, backgroundColor: "yellow", position: "absolute", top: 0, right: 40}}
+          style={{width: 30, height: 30, backgroundColor: "yellow", position: "absolute", top: 20, right: -40}}
           source={require('C:/Users/My-Pc/git/awareco/app/src/images/coins.png')}
         />
         <Text
-        style={{position: "absolute", right: 10, top:0}}
+        style={{position: "absolute", right: -80, top: 20}}
         >1200</Text>
 
 <Text>Amount you want to donate: </Text>
@@ -47,14 +47,15 @@ export default class DonateScreen extends React.Component {
           onPress={() => { this.setState({ 
             ...this.state,
             checked: 'first' }); }}
-        />
+        >Credit Card</RadioButton>
         <RadioButton
           value="second"
           status={checked === 'second' ? 'checked' : 'unchecked'}
           onPress={() => { this.setState({ 
             ...this.state,
             checked: 'second' }); }}
-        />
+        >Debit Card</RadioButton>
+
 {/* <DataTable style={{marginBottom: 100}}>
         <DataTable.Row>
           <DataTable.Cell>
