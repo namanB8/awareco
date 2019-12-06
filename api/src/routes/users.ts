@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { User } from './../models/User';
 import { Donation, DonationDocument } from './../models/Donation';
-import { Transaction } from './../models/Transaction';
+import { Transaction, TransactionDocument } from './../models/Transaction';
 import mongoose from 'mongoose';
 import { UserEvent } from '../models/UserEvent';
 
@@ -69,15 +69,29 @@ router.get('/profile/:userId', async (req, res) => {
   }
 });
 
-router.get('/credits/{userId}', (req, res) => {
-  Transaction.aggregate([
-    {$match: {
-      user: req.params.userId
-    }},
-    {$group: {
-      
-    }}
-  ])
+router.get('/credits/:userId', async (req, res) => {
+  try {
+    const transactions = await Transaction.find({ userId: new mongoose.Types.ObjectId(req.params.userId) }).exec();
+
+    let totalCreditsAvailable = 0;
+    transactions.forEach((transaction: TransactionDocument) => {
+      totalCreditsAvailable += transaction.credits;
+    });
+
+    res.json({
+      status: true,
+      message: '',
+      data: {
+        totalCreditsAvailable
+      }
+    });
+  } catch(err) {
+    res.json({
+      status: false,
+      message: err.message,
+      data: {}
+    });
+  }
 });
 
 router.get('/activities', (req, res) => {
