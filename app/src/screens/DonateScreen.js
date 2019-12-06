@@ -1,62 +1,60 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
-import { DataTable, RadioButton  } from 'react-native-paper';
+import React from "react";
+import { StyleSheet, Text, View, Image, TextInput } from "react-native";
+import { DataTable, RadioButton } from "react-native-paper";
 
-export default class DonateScreen extends React.Component {
-   static navigationOptions =
-   {
-      title: 'DonateScreen',
-   };
-   
-   state = {
-    checked: 'first',
-    value: "40"
- }
+const DonateScreen = () => {
+  const [checked, setChecked] = React.useState("");
+  const [value, setValue] = React.useState("40");
 
- onChangeText = (text) => {
-  this.setState({
-    ...this.state,
-    value: text
-  });
- }
+  const onChangeText = text => {
+    setValue(text);
+  };
 
-   render() {
-    const { checked } = this.state.checked;
+  return (
+    <View style={styles.container}>
+      <Image
+        style={{
+          width: 30,
+          height: 30,
+          backgroundColor: "yellow",
+          position: "absolute",
+          top: 20,
+          right: -40
+        }}
+        source={require("C:/Users/My-Pc/git/awareco/app/src/images/coins.png")}
+      />
+      <Text style={{ position: "absolute", right: -80, top: 20 }}>1200</Text>
 
-      return (
-         <View style = {styles.container}>
-           <Image
-          style={{width: 30, height: 30, backgroundColor: "yellow", position: "absolute", top: 20, right: -40}}
-          source={require('C:/Users/My-Pc/git/awareco/app/src/images/coins.png')}
-        />
-        <Text
-        style={{position: "absolute", right: -80, top: 20}}
-        >1200</Text>
+      <Text>Amount you want to donate: </Text>
+      <TextInput
+        style={{
+          height: 40,
+          width: 100,
+          borderColor: "gray",
+          borderWidth: 1,
+          marginBottom: 40
+        }}
+        onChangeText={text => onChangeText(text)}
+        value={value}
+      />
 
-<Text>Amount you want to donate: </Text>
-           <TextInput
-      style={{ height: 40, width:100, borderColor: 'gray', borderWidth: 1, marginBottom:40 }}
-      onChangeText={text => onChangeText(text)}
-      value={this.state.value}
-    />
+      <Text>Mode of payment: </Text>
+      <RadioButton
+        value="first"
+        status={checked === "first" ? "checked" : "unchecked"}
+        onPress={() => setChecked("first")}
+      >
+        Credit Card
+      </RadioButton>
+      <RadioButton
+        value="second"
+        status={checked === "second" ? "checked" : "unchecked"}
+        onPress={() => setChecked("second")}
+      >
+        Debit Card
+      </RadioButton>
 
-<Text>Mode of payment: </Text>   
-<RadioButton
-          value="first"
-          status={checked === 'first' ? 'checked' : 'unchecked'}
-          onPress={() => { this.setState({ 
-            ...this.state,
-            checked: 'first' }); }}
-        >Credit Card</RadioButton>
-        <RadioButton
-          value="second"
-          status={checked === 'second' ? 'checked' : 'unchecked'}
-          onPress={() => { this.setState({ 
-            ...this.state,
-            checked: 'second' }); }}
-        >Debit Card</RadioButton>
-
-{/* <DataTable style={{marginBottom: 100}}>
+      {/* <DataTable style={{marginBottom: 100}}>
         <DataTable.Row>
           <DataTable.Cell>
           <RadioButton
@@ -77,16 +75,15 @@ export default class DonateScreen extends React.Component {
           </DataTable.Cell>
         </DataTable.Row>
       </DataTable>  */}
-         </View>
-      );
-   }
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-   },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });

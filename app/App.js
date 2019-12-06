@@ -4,20 +4,18 @@ import LoginScreen from "./src/screens/LoginScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import DonateScreen from "./src/screens/DonateScreen";
 import VolunteerScreen from "./src/screens/VolunteerScreen";
-import { NativeRouter, Switch, Route, Router } from "react-router-native";
-import history from "./src/utilities/history";
+import { NativeRouter, Switch, Route } from "react-router-native";
 
 export default function App() {
   return (
-    <NativeRouter >
+    <NativeRouter>
       <View style={styles.container}>
-        <Router history={history}>
-          {/* <Route exact path="/" component={LoginScreen} /> */}
+        <Switch>
+          <Route exact path="/" component={LoginScreen} />
           <Route exact path="/dashboard" component={DashboardScreen} />
-          <Route exact path="/" component={DonateScreen} />
           <Route exact path="/donate" component={DonateScreen} />
           <Route exact path="/volunteer" component={VolunteerScreen} />
-        </Router>
+        </Switch>
       </View>
     </NativeRouter>
   );
