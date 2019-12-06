@@ -1,19 +1,21 @@
 import React from "react";
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { StyleSheet, Text, View } from "react-native";
+import { NativeRouter, Switch, Route } from "react-router-native";
 import LoginScreen from "./screens/LoginScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 
 export default function App() {
-  return <AppNavigator />;
+  return (
+    <NativeRouter>
+      <View style={styles.container}>
+        <Switch>
+          <Route exact path="/" component={LoginScreen} />
+          <Route exact path="/dashboard" component={DashboardScreen} />
+        </Switch>
+      </View>
+    </NativeRouter>
+  );
 }
-
-const AppSwitchNavigator = createSwitchNavigator({
-  LoginScreen: LoginScreen,
-  DashboardScreen: DashboardScreen
-});
-
-const AppNavigator = createAppContainer(AppSwitchNavigator);
 
 const styles = StyleSheet.create({
   container: {
