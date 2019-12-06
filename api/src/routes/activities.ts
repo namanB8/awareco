@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/:userId', async (req, res) => {
   try {
-    const activities = Activity.find({user: new mongoose.Types.ObjectId(req.params.userId)});
+    const activities = Activity.find({ user: new mongoose.Types.ObjectId(req.params.userId) }).exec();
 
     res.json({
       status: true,
@@ -24,7 +24,7 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
-router.get('/:activityId', async (req, res) => {
+router.get('/:userId/:activityId', async (req, res) => {
   try {
     const activity = await Activity.findById(req.params.activityId).lean();
 
