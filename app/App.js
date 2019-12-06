@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import LoginScreen from "./src/screens/LoginScreen";
 import DashboardScreen from "./src/screens/DashboardScreen";
 import DonateScreen from "./src/screens/DonateScreen";
-import { StyleSheet, Text, View } from "react-native";
 import { NativeRouter, Switch, Route } from "react-router-native";
 
   export default class App extends React.Component {
