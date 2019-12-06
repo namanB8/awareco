@@ -171,6 +171,57 @@ router.delete('/userEvent/:userId/:eventId', async (req, res) => {
   }
 });
 
-router.get('/leaderboard');
+router.get('/leaderboard', async (req, res) => {
+  try {
+    const result = await User.aggregate([
+      {$lookup: {
+          from: 'transactions',
+          localField: "_id",
+          foreignField: "user",
+          as: "transactions"
+      }},
+      {$addFields: {
+          positiveTxs: {$filter: {
+              input: "$transactions",
+              as: "tx",
+              cond: {$gte: ["$$tx.credits", 0]}
+          }}
+      }},
+      {$addFields: {
+          accumulatedCredits: {$reduce: {
+              input: "$positiveTxs",
+              initialValue: 0,
+              in: {
+                  $add: ["$$value", "$$this.credits"]
+              }
+          }}
+      }},
+      {$project: {
+        "transactions": 0,
+        "positiveTxs": 0
+      }},
+      {$sort: {
+          accumulatedCredits: -1
+      }},
+      {$limit: 10}
+  ]).exec();
+
+  console.log(result);
+
+    res.json({
+      status: true,
+      message: 'User not longer attending the event',
+      data: {
+        result
+      }
+    });
+  } catch(err) {
+    res.json({
+      status: false,
+      message: err.message,
+      data: {}
+    });
+  }
+});
 
 export default router;

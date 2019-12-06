@@ -8,7 +8,7 @@ const router = Router();
 
 router.get('/:userId', async (req, res) => {
   try {
-    const activities = Activity.find({ user: new mongoose.Types.ObjectId(req.params.userId) }).exec();
+    const activities = await Activity.find({ user: new mongoose.Types.ObjectId(req.params.userId) }).exec();
 
     res.json({
       status: true,
@@ -47,7 +47,10 @@ router.post('/:userId', async (req, res) => {
       status: true,
       message: '',
       data: {
-        activity
+        activity: {
+          ...activity,
+          co2: activity.distanceCovered * 0.00005
+        }
       }
     });
   } catch(err) {
@@ -67,7 +70,10 @@ router.get('/:userId/:activityId', async (req, res) => {
       status: true,
       message: '',
       data: {
-        activity
+        activity: {
+          ...activity,
+          co2: activity.distanceCovered * 0.00005
+        }
       }
     });
   } catch(err) {
