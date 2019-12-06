@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { User } from './../models/User';
 import { Donation, DonationDocument } from './../models/Donation';
 import { Transaction, TransactionDocument } from './../models/Transaction';
+import { UserDocument } from './../models/User';
+import { EventDocument } from './../models/Event';
 import mongoose from 'mongoose';
 import { UserEvent } from '../models/UserEvent';
 
@@ -71,7 +73,7 @@ router.get('/profile/:userId', async (req, res) => {
 
 router.get('/credits/:userId', async (req, res) => {
   try {
-    const transactions = await Transaction.find({ userId: new mongoose.Types.ObjectId(req.params.userId) }).exec();
+    const transactions = await Transaction.find({ user: new mongoose.Types.ObjectId(req.params.userId) }).exec();
 
     let totalCreditsAvailable = 0;
     transactions.forEach((transaction: TransactionDocument) => {
@@ -126,7 +128,50 @@ router.post('/donate/:userId', async (req, res) => {
   }
 });
 
-//router.get('/leaderboard');
-//router.get('/credits');
+router.post('/userEvent/:userId/:eventId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    const event = await User.findById(req.params.eventId);
+
+    const userEvent = await UserEvent.create({
+      user,
+      event
+    });
+
+    res.json({
+      status: true,
+      message: '',
+      data: {
+        userEvent
+      }
+    });
+  } catch(err) {
+    res.json({
+      status: false,
+      message: err.message,
+      data: {}
+    });
+  }
+});
+
+router.delete('/userEvent/:userId/:eventId', async (req, res) => {
+  try {
+    const result = await UserEvent.deleteOne({ user: req.params.userId, event: req.params.eventId });
+
+    res.json({
+      status: true,
+      message: 'User not longer attending the event',
+      data: {}
+    });
+  } catch(err) {
+    res.json({
+      status: false,
+      message: err.message,
+      data: {}
+    });
+  }
+});
+
+router.get('/leaderboard');
 
 export default router;
