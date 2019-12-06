@@ -2,8 +2,7 @@ import { Router } from 'express';
 import { User } from './../models/User';
 import { Donation, DonationDocument } from './../models/Donation';
 import { Transaction, TransactionDocument } from './../models/Transaction';
-import { UserDocument } from './../models/User';
-import { EventDocument } from './../models/Event';
+import { Event } from './../models/Event';
 import mongoose from 'mongoose';
 import { UserEvent } from '../models/UserEvent';
 
@@ -131,7 +130,7 @@ router.post('/donate/:userId', async (req, res) => {
 router.post('/userEvent/:userId/:eventId', async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
-    const event = await User.findById(req.params.eventId);
+    const event = await Event.findById(req.params.eventId);
 
     const userEvent = await UserEvent.create({
       user,
