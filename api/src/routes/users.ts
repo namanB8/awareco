@@ -94,10 +94,6 @@ router.get('/credits/:userId', async (req, res) => {
   }
 });
 
-router.get('/activities', (req, res) => {
-
-});
-
 //router.get('/leaderboard');
 //router.get('/credits');
 
