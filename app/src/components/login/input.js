@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
 
 class Inputs extends Component {
+ 
+
    state = {
       userName: '',
       password: ''
@@ -14,16 +16,11 @@ class Inputs extends Component {
    }
    login = (userName, pass) => {
       alert('userName: ' + userName + ' password: ' + pass)
-      fetch("https://jsonplaceholder.typicode.com/users")
-.then(response => response.json())
-.then((responseJson)=> {
-  // this.setState({
-  //  loading: false,
-  //  dataSource: responseJson
-  // })
-  console.log("hihihihi");
-  
-})
+      // fetch("https://jsonplaceholder.typicode.com/users")
+      // .then(response => response.json())
+      // .then((responseJson)=> {
+        this.props.navigation.navigate('DashboardScreen')
+// })
 .catch(error=>console.log(error))
    }
    render() {
@@ -45,6 +42,7 @@ class Inputs extends Component {
             
             <TouchableOpacity
                style = {styles.submitButton}
+               disabled={this.state.userName === "" || this.state.password === ""}
                onPress = {
                   () => this.login(this.state.userName, this.state.password)
                }>
